@@ -112,3 +112,16 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+const createH2 = (obj) => {
+  const h2 = document.createElement('h2'); // create h2 element
+  h2.textContent = obj.title;  // Set the text for the h2 element using the title property of the object
+  return h2; // return the new h2 element
+};
+
+const createDate = (obj) => {
+  const date = document.createElement('p');
+  date.classList.add('date'); // Add the 'date' class to the classList of the date object
+  date.textContent = obj.date;
+  return date;
+};
