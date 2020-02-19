@@ -85,6 +85,61 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Is Angular dying because of React?',
+    date: 'May 1st, 2019',
+    firstParagraph: `As local market trends begin to skew towards React, it’s easy to question the future of demand for Angular. 
+          It’s a one or the other kind of game and makes you wonder which once you should pick up, especially when you’re just entering the fray. `,
+
+    secondParagraph: `Since Facebook changed React’s BSD licensing to MIT, the library appears to be exploding in every corner of the global development 
+          market. However, what a lot of entrepreneurs and startups don’t realize until later down the line is that React isn’t a complete front end system —
+          it is just one library, one building block of many to help quickly scale a small application into larger, compartmentalized and component 
+          based system.`,
+
+    thirdParagraph: `Facebook is often used as the prime example of its success. But React is only a tiny drop in the multitude of technologies the 
+          tech giant employs. It is after all, just a JavaScript UI library. Angular, however, is a collection of libraries that work together a 
+          cohesive unit. There are things that Angular do well that React omits, while other theoretical implementations of the latter is much better 
+          executed. Developers will always be biased towards what they know best and as a result, refuse to look into other paradigms that may be 
+          better suited for the situation — or perhaps this kind of thinking is often regulated to those who sits at the junior and intermediate levels.`
+  },
+  {
+    title: 'Deeply Understanding JavaScript Async and Await with Examples',
+    date: 'May 1st, 2019',
+    firstParagraph: `In the beginning, there were callbacks. A callback is nothing special but a function that is executed at some later time. 
+          Due to JavScript’s asynchronous nature, a callback is required in many places, where the results are not available immediately.`,
+
+    secondParagraph: `Problems arise when we want to do multiple async operations. Imagine this hypothetical scenario (where all operations are async) —
+          We query our database for the user Arfat. We read the profile_img_url and fetch the image from someServer.com.
+          After fetching the image, we transform it into a different format, say PNG to JPEG.
+          If the transformation is successful, we send the user an email.
+          We log this task in our file transformations.log with the timestamp.`,
+
+    thirdParagraph: `Note the nesting of callbacks and the staircase of }) at the end. This is affectionately called as Callback Hell or Pyramid of 
+          Doom due to its namesake resemblance. Some disadvantages of this are —
+          The code becomes harder to read as one has to move from left to right to understand.
+          Error handling is complicated and often leads to bad code.
+          To overcome this problem, JavaScript gods created Promises. Now, instead of nesting callbacks inward, we can chain them.`
+  },
+  {
+    title: 'Embracing Webflow as a Frontend Developer',
+    date: 'May 28th, 2018',
+    firstParagraph: `Throughout the rather short history of software development there have been many evolutions in the tools we use to 
+          build software. Despite the very nature of software development being rapid change, there’s always been a resistant, change-adverse 
+          group downplaying the legitimacy of newer tools. When we advanced from Assembly to the familiar C-like languages commonly used today, 
+          there were no doubt programmers who scoffed at C, and thought the abstractions went too far — that real programmers wrote Assembly, 
+          and C was just a toy for the simpletons. We often hear, more recently, the same sentiments expressed towards languages like PHP and 
+          Visual Basic. In an interview once, I saw my chances of getting the job disappear in a swift evanescence when I mentioned to my 
+          interviewer that my last job was primarily working with PHP.`,
+
+    secondParagraph: `It’s rampant in our industry to preach some version of the no true Scotsman fallacy when it comes to the tools we use to 
+          build software. We bicker over programming languages, text editors, and a variety of other tools. This brings us to Webflow (Webflow): 
+          a visual tool for building websites without writing any code. Should real web developers use Webflow despite already knowing how to code?`,
+
+    thirdParagraph: `My initial thoughts when I first learned of Webflow was something along these lines: Oh great… another Adobe Dreamweaver.
+          I thought Webflow wasn’t a serious tool for real developers. I thought it would be better if people just learned how to code instead 
+          of using these clunky, inefficient tools. Just like some people once thought with C, I thought a visual abstraction would go too far, 
+          too high level, to be a legitimate tool..`
   }
 ];
 
@@ -113,15 +168,52 @@ const data = [
 
 */
 
-const createH2 = (obj) => {
-  const h2 = document.createElement('h2'); // create h2 element
-  h2.textContent = obj.title;  // Set the text for the h2 element using the title property of the object
-  return h2; // return the new h2 element
+const createArticle = (obj) => {
+  // Creates a div  to act as a container for the article elements 
+  const article = document.createElement('div');
+  article.classList.add('article');
+
+  // Creates an h2 element that contains the title of the article
+  const title = document.createElement('h2');
+  title.textContent = obj.title;
+
+  // Creates a paragraph element that contains the date of the article
+  const date = document.createElement('p');
+  date.classList.add('date');
+  date.textContent = obj.date;
+
+  // Creates and set the text content of the three article content paragraphs
+  const p1 = document.createElement('p');
+  p1.textContent = obj.firstParagraph;
+  const p2 = document.createElement('p');
+  p2.textContent = obj.secondParagraph;
+  const p3 = document.createElement('p');
+  p3.textContent = obj.thirdParagraph;
+
+  const btn = document.createElement('span');
+  btn.classList.add('expandButton');
+  btn.textContent = 'Click to Expand'; // Sets the initial text of the button
+  btn.addEventListener('click', () => { // Event listener for the created button
+    if (btn.parentElement.classList.contains('article-open')) { // if the article is open/expanded the following executes
+      btn.parentElement.classList.remove('article-open');
+      btn.textContent = 'Click to Expand';
+    } else { // else the article is open/expanded the following executes
+      btn.parentElement.classList.add('article-open');
+      btn.textContent = 'Click to Close';
+    }
+  });
+
+  // append each element to the article
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(p1);
+  article.appendChild(p2);
+  article.appendChild(p3);
+  article.appendChild(btn);
+
+  return article;
 };
 
-const createDate = (obj) => {
-  const date = document.createElement('p');
-  date.classList.add('date'); // Add the 'date' class to the classList of the date object
-  date.textContent = obj.date;
-  return date;
-};
+const articles = document.querySelector('.articles'); // Creates articles from elements with the class name articles
+
+data.forEach(article => articles.appendChild(createArticle(article))); // Appends each article to articles
