@@ -194,6 +194,7 @@ const createArticle = (obj) => {
   btn.classList.add('expandButton');
   btn.textContent = 'Click to Expand'; // Sets the initial text of the button
   btn.addEventListener('click', () => { // Event listener for the created button
+    article.style.transition = 'all 2.5s ease-in-out';
     if (btn.parentElement.classList.contains('article-open')) { // if the article is open/expanded the following executes
       btn.parentElement.classList.remove('article-open');
       btn.textContent = 'Click to Expand';
