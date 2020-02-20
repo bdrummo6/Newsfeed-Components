@@ -62,10 +62,10 @@ const createMenu = (arr) => {
     })
   });
 
-  menu.appendChild(menuList);
+  menu.appendChild(menuList); // Appends the list of menu items to the menu
 
-  return menu;
-}
+  return menu; // returns the menu component
+};
 
 // Get the 'div' with the class 'header'
 const menuContainer = document.querySelector('.header');
