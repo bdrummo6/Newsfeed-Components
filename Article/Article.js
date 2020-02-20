@@ -169,7 +169,6 @@ const data = [
 */
 
 const createArticle = (obj) => {
-	
    // Create a 'div' element for the article
   const article = document.createElement('div');
   article.classList.add('article'); // Gives the 'div' element the class 'article'
@@ -220,7 +219,7 @@ const createArticle = (obj) => {
 
   // Return the article element
   return article;
-}
+};
 
 // Get the 'div' with the class 'articles'
 const articles = document.querySelector('.articles');
