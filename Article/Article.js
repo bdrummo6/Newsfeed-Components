@@ -169,42 +169,48 @@ const data = [
 */
 
 const createArticle = (obj) => {
-  // Creates a div  to act as a container for the article elements 
+	
+   // Create a 'div' element for the article
   const article = document.createElement('div');
-  article.classList.add('article');
+  article.classList.add('article'); // Gives the 'div' element the class 'article'
 
-  // Creates an h2 element that contains the title of the article
+  // Creates a 'h2' element that will hold an Article's title
   const title = document.createElement('h2');
-  title.textContent = obj.title;
+  title.textContent = obj.title; // Sets the text of the 'h2' element
 
-  // Creates a paragraph element that contains the date of the article
+  // Creates a 'p' element to hold the date of the article
   const date = document.createElement('p');
   date.classList.add('date');
   date.textContent = obj.date;
 
-  // Creates and set the text content of the three article content paragraphs
+  // Creates a 'p' element for holding the text for the firstParagraph
   const p1 = document.createElement('p');
   p1.textContent = obj.firstParagraph;
+  // Creates a 'p' element for holding the text for the secondParagraph
   const p2 = document.createElement('p');
   p2.textContent = obj.secondParagraph;
+  // Creates a 'p' element for holding the text for the thirdParagraph
   const p3 = document.createElement('p');
   p3.textContent = obj.thirdParagraph;
 
+  // Creates a 'span' element for holding the button that will expand and close an article
   const btn = document.createElement('span');
   btn.classList.add('expandButton');
-  btn.textContent = 'Click to Expand'; // Sets the initial text of the button
-  btn.addEventListener('click', () => { // Event listener for the created button
-    article.style.transition = 'all 2.5s ease-in-out';
-    if (btn.parentElement.classList.contains('article-open')) { // if the article is open/expanded the following executes
-      btn.parentElement.classList.remove('article-open');
+  btn.textContent = 'Click to Expand'; // Sets the initial text for the button
+
+  // Creates an event listener so when the button is clicked the article will expand open or close depending on its status
+  btn.addEventListener('click', () => {
+    article.style.transition = 'all 3s ease-in-out'; // Slows the process of opening an closing an article
+    if(btn.parentElement.classList.contains('article-open')) { // if the article is open
+      btn.parentElement.classList.remove('article-open'); // removes 'article-open' token to close the article
       btn.textContent = 'Click to Expand';
-    } else { // else the article is open/expanded the following executes
-      btn.parentElement.classList.add('article-open');
+    } else { // if the article is closed
+      btn.parentElement.classList.add('article-open'); // Adds the 'article-open' token to open the article
       btn.textContent = 'Click to Close';
     }
   });
 
-  // append each element to the article
+  // Append individual elements to the article 'div'
   article.appendChild(title);
   article.appendChild(date);
   article.appendChild(p1);
@@ -212,9 +218,12 @@ const createArticle = (obj) => {
   article.appendChild(p3);
   article.appendChild(btn);
 
+  // Return the article element
   return article;
-};
+}
 
-const articles = document.querySelector('.articles'); // Creates articles from elements with the class name articles
+// Get the 'div' with the class 'articles'
+const articles = document.querySelector('.articles');
 
-data.forEach(article => articles.appendChild(createArticle(article))); // Appends each article to articles
+// Maps over the data, creates articles from the data and then appends each one to the articles 'div'
+data.forEach(article => articles.appendChild(createArticle(article)));
