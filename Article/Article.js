@@ -199,7 +199,7 @@ const createArticle = (obj) => {
 
   // Creates an event listener so when the button is clicked the article will expand open or close depending on its status
   btn.addEventListener('click', () => {
-    article.style.transition = 'all 3s ease-in-out'; // Slows the process of opening an closing an article
+    article.style.transition = 'all 2.5s ease-in-out'; // Slows the process of opening an closing an article
     if(btn.parentElement.classList.contains('article-open')) { // if the article is open
       btn.parentElement.classList.remove('article-open'); // removes 'article-open' token to close the article
       btn.textContent = 'Click to Expand';
