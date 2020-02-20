@@ -35,40 +35,43 @@ let menuItems = [
 */
 
 const createMenu = (arr) => {
-  // Creates a header element contain the menu and it's elements
-  const menuContainer = document.querySelector('.header');
-
-  // Creates a div which will contain the list and list items that will make up the menu
+  // Creates a 'div' element to be the menu container
   const menu = document.createElement('div');
   menu.classList.add('menu');
 
-  // Creates an unordered list for holding the list items which are menu items
+  // Creates a 'ul' element to hold the menu items
   const menuList = document.createElement('ul');
 
-  // Iterates through the array of items and stores them in list items and appends those to the menuList
-  arr.forEach((item) => {
+  // Creates 'li' elements by iterating over the array data and then appending each to the menuList
+  arr.forEach(item => {
     const menuItem = document.createElement('li');
-    menuItem.textContent = item;
+    menuItem.textContent = item; // Stores data from item into the textContent property of the created menuItem
     menuList.appendChild(menuItem);
   });
 
-  // Creates a menu button with the class menu-button and then an event listener for when the button is clicked on
-  const menuBtn = document.querySelector('.menu-button');
-  menuBtn.addEventListener('click', () => {
-    menu.style.color = '#81C784'; // When the menu opens the default font color changes
-    menu.style.backgroundColor = '#FFFEF7'; // When the menu opens the default background color changes
-    menu.classList.toggle('menu--open');
+  // Gets the element with the class 'menu-button'
+  const btn = document.querySelector('.menu-button');
 
-    articles.addEventListener('click', () => { // When a click occurs on the main part of the page then the menu closes
+  btn.addEventListener('click', () => {
+    menu.style.color = '#81C784'; // Changes the default font color on button click
+    menu.style.backgroundColor = '#FFFEF7'; // Changes the default background color on button click
+    menu.classList.toggle('menu--open'); // Toggles the menu to open and close
+
+    articles.addEventListener('click', () => { // Clicking on main part of the page will also close the menu
       menu.classList.remove('menu--open');
     })
   });
 
-  menuContainer.appendChild(menu); // Appends the menu div to the menuContainer header
-  menu.appendChild(menuList); // Appends the menuList ul to the menu div
+  menu.appendChild(menuList);
 
-  return menuContainer;
+  return menu;
+}
 
-};
+// Get the 'div' with the class 'header'
+const menuContainer = document.querySelector('.header');
 
-createMenu(menuItems);
+// Call createMenu function with the array 'menuItems' as its parameter
+const menu = createMenu(menuItems);
+
+// Append menu to menuContainer
+menuContainer.appendChild(menu);
