@@ -217,8 +217,7 @@ const createArticle = (obj) => {
   article.appendChild(p3);
   article.appendChild(btn);
 
-  // Return the article element
-  return article;
+  return article; // returns the article component
 };
 
 // Get the 'div' with the class 'articles'
