@@ -51,7 +51,6 @@ const createMenu = (arr) => {
 
   // Gets the element with the class 'menu-button'
   const btn = document.querySelector('.menu-button');
-
   btn.addEventListener('click', () => {
     menu.style.color = '#81C784'; // Changes the default font color on button click
     menu.style.backgroundColor = '#FFFEF7'; // Changes the default background color on button click
