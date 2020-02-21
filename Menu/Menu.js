@@ -33,3 +33,44 @@ let menuItems = [
   Step 6: add the menu component to the DOM.
   
 */
+
+const createMenu = (arr) => {
+  // Creates a 'div' element to be the menu container
+  const menu = document.createElement('div');
+  menu.classList.add('menu');
+
+  // Creates a 'ul' element to hold the menu items
+  const menuList = document.createElement('ul');
+
+  // Creates 'li' elements by iterating over the array data and then appending each to the menuList
+  arr.forEach(item => {
+    const menuItem = document.createElement('li');
+    menuItem.textContent = item; // Stores data from item into the textContent property of the created menuItem
+    menuList.appendChild(menuItem);
+  });
+
+  // Gets the element with the class 'menu-button'
+  const btn = document.querySelector('.menu-button');
+  btn.addEventListener('click', () => {
+    menu.style.color = '#81C784'; // Changes the default font color on button click
+    menu.style.backgroundColor = '#FFFEF7'; // Changes the default background color on button click
+    menu.classList.toggle('menu--open'); // Toggles the menu to open and close
+
+    articles.addEventListener('click', () => { // Clicking on main part of the page will also close the menu
+      menu.classList.remove('menu--open');
+    })
+  });
+
+  menu.appendChild(menuList); // Appends the list of menu items to the menu
+
+  return menu; // returns the menu component
+};
+
+// Get the 'div' with the class 'header'
+const menuContainer = document.querySelector('.header');
+
+// Call createMenu function with the array 'menuItems' as its parameter
+const menu = createMenu(menuItems);
+
+// Append menu to menuContainer
+menuContainer.appendChild(menu);
